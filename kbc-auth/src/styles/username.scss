@@ -1,0 +1,90 @@
+.kbc-auth-username {
+    border: 1px solid #c4c4c4;
+    border-radius: $border-radius-mid;
+    margin-bottom: 32px;
+    padding: 12px 20px;
+
+    &__part {
+        padding: 16px;
+        color: #434a50;
+        font-size: $font-size-base;
+        font-weight: $font-weight-semi;
+        line-height: 1;
+    }
+
+    &__randomiser {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    &__random {
+        padding: 8px 10px;
+        border: 0;
+        background-color: $orange;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__part {
+        position: relative;
+        border: 1px solid #c4c4c4;
+        border-radius: 6px;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        overflow: hidden;
+
+        &--verb {
+            width: 35%;
+            flex-basis: 35%;
+        }
+
+        &--noun {
+            width: 30%;
+            flex-basis: 30%;
+        }
+
+        span {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            display: block;
+            width: 100%;
+            transition: transform 0s;
+
+            &.name-new {
+                transform: translateY(-300%);
+            }
+        }
+
+        &--verb#{&}--animating span {
+            transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+        }
+
+        &--noun#{&}--animating span {
+            transition: transform 0.15s ease-out 0.1s, opacity 0.15s ease-out 0.08s;
+        }
+
+        &--number#{&}--animating span {
+            transition: transform 0.15s ease-out 0.15s, opacity 0.15s ease-out 0.15s;
+        }
+
+        &--animating span {
+            &.name-new {
+                transform: translateY(-50%);
+            }
+            &.name-old {
+                opacity: 0;
+                transform: translateY(200%);
+            }
+        }
+    }
+}

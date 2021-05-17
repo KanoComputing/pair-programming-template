@@ -1,0 +1,513 @@
+@import '~@kano/kbc-base-styles/src/tools.scss';
+
+@import 'username';
+@import 'signup';
+
+$auth-gray: #434a50;
+
+.kbc-auth-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: $zindex-modal-backdrop + 50;
+    overflow-y: scroll;
+}
+
+.kbc-auth-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $zindex-modal-backdrop;
+    background-color: rgba($black, 0.5);
+}
+
+.kbc-auth {
+    position: absolute;
+    top: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background-color: $white;
+    border-radius: $border-radius-base;
+    box-shadow: 0 4px 4px rgba($black, 0.15);
+    padding: 24px 32px;
+    z-index: $zindex-modal;
+
+    @media screen and (min-width: 405px) {
+        width: 405px;
+    }
+
+    @media screen and (min-width: 480px) {
+        &--signup,
+        &--verified {
+            width: 480px;
+        }
+    }
+
+    &--verified {
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @media screen and (max-height: 700px) {
+        &--verified {
+            top: 16px;
+            transform: translateX(-50%);
+        }
+    }
+
+    &__loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p {
+        margin-bottom: 24px;
+        color: $auth-gray;
+        font-size: $font-size-h4;
+        line-height: 24px;
+        font-weight: $font-weight-semi;
+    }
+
+    .kbc-auth__input {
+        margin-bottom: 24px;
+
+        &--username {
+            margin-bottom: 16px;
+        }
+
+        .control {
+            color: $auth-gray;
+            font-size: $font-size-base;
+            font-weight: $font-weight-semi;
+        }
+
+        label {
+            font-size: $font-size-small;
+            padding: 0 0 8px;
+        }
+    }
+
+    input[type='radio'] {
+        appearance: none;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    input[type='radio'] + &__radio {
+        position: relative;
+        margin-right: 16px;
+        margin-bottom: 32px;
+        padding: 0 0 0 26px;
+        font-size: $font-size-h4;
+        line-height: 22px;
+        cursor: pointer;
+
+        .icon {
+            position: relative;
+            top: -2px;
+            margin-right: 4px;
+        }
+
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 18px;
+            height: 18px;
+            background-color: #e9ebec;
+            border-radius: 18px;
+        }
+
+        &:after {
+            display: none;
+            width: 10px;
+            height: 10px;
+            top: 5px;
+            left: 5px;
+            border-radius: 10px;
+            background-color: $green;
+        }
+    }
+
+    input[type='radio']:hover + &__radio:after {
+        display: block;
+    }
+
+    input[type='radio']:hover:checked + &__radio:after {
+        display: none;
+    }
+
+    input[type='radio']:checked + &__radio {
+        padding-left: 0;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__title {
+        margin-bottom: 24px;
+        font-size: $font-size-h2;
+        line-height: 1;
+        font-weight: $font-weight-extra-bold;
+
+        &--indent {
+            margin-left: 24px;
+        }
+
+        &--bold {
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    &__sub-title {
+        color: $orange;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
+        margin: 0 0 8px;
+        line-height: 24px;
+    }
+
+    .kbc-button#{&}__button {
+        display: inline-flex;
+        margin: 0;
+        padding: 12px 16px;
+        background-color: $orange;
+        border-color: $orange;
+        font-size: $font-size-h4;
+        line-height: 16px;
+
+        &:hover {
+            background-color: $orange-dark;
+            border-color: $orange-dark;
+        }
+
+        &--small {
+            display: inline-block;
+            font-size: $font-size-small;
+            background-color: $gray-light;
+            border-color: $gray-light;
+            padding: 8px 16px;
+            margin-left: 16px;
+
+            &:hover {
+                background-color: $gray-base;
+                border-color: $gray-base;
+            }
+        }
+
+        &--login {
+            margin-bottom: 24px;
+        }
+    }
+
+    &__button-link {
+        border: 0;
+        background-color: transparent;
+        color: $orange;
+        margin: 0;
+        display: inline;
+        font-weight: $font-weight-bold;
+        cursor: pointer;
+
+        &:hover {
+            color: $orange-dark;
+            text-decoration: none;
+        }
+
+        &--inline {
+            padding: 0;
+            text-transform: lowercase;
+        }
+
+        &--large {
+            margin: 0 1em;
+            font-size: $font-size-h4;
+            color: $auth-gray;
+        }
+    }
+
+    &__back-button {
+        position: absolute;
+        top: 0;
+        left: -10px;
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+
+        .icon {
+            color: #a0a4a8;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            outline: none;
+
+            .icon {
+                color: $orange;
+            }
+        }
+
+        &--inactive {
+            opacity: 0.2;
+            cursor: default;
+
+            &:hover .icon {
+                color: #a0a4a8;
+            }
+        }
+    }
+
+    &__big-button {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 100%;
+        height: 137px;
+        padding: 24px 32px;
+        margin: 0 0 32px;
+        font-weight: bold;
+        background-color: transparent;
+        border: 0;
+        box-shadow: 0 2px 2px rgba($black, 0.15);
+        border-radius: $border-radius-mid;
+        cursor: pointer;
+
+        &--center {
+            justify-content: center;
+        }
+
+        &--last {
+            margin: 0 0 10px;
+        }
+
+        &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #c4c4c4;
+            border-radius: $border-radius-mid;
+            pointer-events: none;
+        }
+
+        &-text {
+            display: block;
+            text-align: left;
+            color: #c4c4c4;
+            font-size: $font-size-h3;
+
+            &--small {
+                font-size: $font-size-base;
+                color: $orange;
+            }
+
+            &--large {
+                font-size: $font-size-h2;
+                font-weight: $font-weight-bold;
+                color: $auth-gray;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            outline: none;
+
+            &:before {
+                border-color: $orange;
+                border-width: 2px;
+            }
+
+            .kbc-auth__big-button-text {
+                color: $auth-gray;
+
+                &--large {
+                    color: $orange;
+                }
+            }
+        }
+
+        &:active {
+            background-color: $orange;
+            outline: none;
+
+            &:before {
+                border-color: $orange-dark;
+                border-width: 2px;
+            }
+
+            .kbc-auth__big-button-text {
+                color: $white;
+
+                &--large {
+                    color: $white;
+                }
+            }
+        }
+
+        &--world-purple &-text--small,
+        &--world-purple:hover &-text--large,
+        &--world-purple:focus &-text--large {
+            color: $world-purple;
+        }
+
+        &--world-purple:hover,
+        &--world-purple:focus {
+            &:before {
+                border-color: $world-purple;
+            }
+        }
+
+        &--world-purple:active {
+            background-color: $world-purple;
+
+            &:before {
+                border-color: darken($world-purple, 20);
+            }
+
+            .kbc-auth__big-button-text {
+                color: $white;
+
+                &--large {
+                    color: $white;
+                }
+            }
+        }
+
+        &-icon {
+            position: absolute;
+            top: 50%;
+            right: 32px;
+            transform: translateY(-50%);
+
+            &--club {
+                right: 40px;
+            }
+        }
+    }
+
+    &__privacy-link {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        color: #A0A4A8;
+        float: right;
+        line-height: 40px;
+    }
+
+    p#{&}__forgot-text {
+        font-size: $font-size-small;
+        color: #a1a5aa;
+        margin: 0;
+    }
+
+    &__login-text {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        p {
+            margin: 0;
+            font-size: $font-size-base;
+            font-weight: $font-weight-semi;
+            color: #a0a4a8;
+            line-height: $font-size-h2;
+        }
+    }
+
+    &__verified-icon {
+        position: relative;
+        top: -2px;
+        left: -10px;
+    }
+
+    &__guardian-settings {
+        margin-bottom: 24px;
+    }
+
+    &__club-promo {
+        width: calc(100% + 20px);
+        margin: 0 -10px;
+        padding: 24px;
+        background-color: $world-blue;
+        border-radius: 12px;
+        color: $white;
+        box-shadow: 0 4px 4px rgba($black, 0.15);
+        background-repeat: no-repeat;
+        background-position: 25% 90%;
+        background-size: 180%;
+
+        &-title,
+        p#{&}-text {
+            margin-bottom: 16px;
+        }
+
+        &-title {
+            color: inherit;
+            font-weight: $font-weight-extra-bold;
+            font-size: $font-size-h1;
+            line-height: 1.125;
+            width: 14ch;
+            text-shadow: 0 2px 2px rgba($black, 0.15);
+        }
+
+        p#{&}-text {
+            color: mix($white,$world-blue,70%);
+        }
+
+        ul {
+            margin-bottom: 24px;
+
+            li {
+                font-weight: $font-weight-extra-bold;
+                font-size: $font-size-h3;
+                line-height: 32px;
+            }
+        }
+    }
+
+    &__club-icon {
+        float: right;
+    }
+
+    &__icon-background {
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            transform: translate(-50%, -50%);
+            background-color: $white;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        svg {
+            position: relative;
+            z-index: 2;
+        }
+    }
+}

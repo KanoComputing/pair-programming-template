@@ -1,0 +1,27 @@
+{
+  "name": "@kano/kbc-auth",
+  "version": "1.0.9",
+  "description": "Authentication window for Kano Studio apps",
+  "author": "Kano Computing",
+  "homepage": "",
+  "license": "MIT",
+  "main": "src/index.tsx",
+  "module": "src/index.tsx",
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@kano/kbc-button": "^3.0.26",
+    "@kano/kbc-forms": "^2.1.4",
+    "@kano/kbc-icons": "^2.2.3",
+    "@kano/kbc-intl": "^2.0.4",
+    "@kano/kbc-loader": "^2.0.5",
+    "@kano/kbc-telemetry": "^4.0.29"
+  },
+}
