@@ -1,0 +1,35 @@
+{
+  "name": "@kano/kbc-auth",
+  "version": "1.0.9",
+  "description": "Authentication window for Kano Studio apps",
+  "author": "Kano Computing",
+  "homepage": "https://github.com/KanoComputing/kano-boilerplate-components#readme",
+  "license": "MIT",
+  "main": "src/index.tsx",
+  "module": "src/index.tsx",
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KanoComputing/kano-boilerplate-components.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/KanoComputing/kano-boilerplate-components/issues"
+  },
+  "dependencies": {
+    "@kano/kbc-button": "^3.0.26",
+    "@kano/kbc-forms": "^2.1.4",
+    "@kano/kbc-icons": "^2.2.3",
+    "@kano/kbc-intl": "^2.0.4",
+    "@kano/kbc-loader": "^2.0.5",
+    "@kano/kbc-telemetry": "^4.0.29"
+  },
+  "gitHead": "dcadea4c42d85c56656eef8154acee25c349c6c6"
+}
